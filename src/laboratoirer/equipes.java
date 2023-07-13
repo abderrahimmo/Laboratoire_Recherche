@@ -684,7 +684,7 @@ public class equipes extends javax.swing.JFrame {
 
     private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseClicked
         // TODO add your handling code here:
-        Pagechoix CP = new Pagechoix();
+        WindowDirecteur CP = new WindowDirecteur();
                     CP.show();
                     dispose();
     }//GEN-LAST:event_jLabel20MouseClicked

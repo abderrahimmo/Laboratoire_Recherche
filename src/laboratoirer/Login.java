@@ -272,11 +272,18 @@ public class Login extends javax.swing.JFrame {
                         if(Testusername.equals(username) && Testpassword.equals(password)&& Testrole.equals("Chef d'equipe")){
                     userExists = true;
                     System.out.println("Welcome to your Desktop Application");
-                   /* WindowDirecteur WD = new WindowDirecteur();
+                   WindowDirecteur1 WD = new WindowDirecteur1();
                     WD.show();
-                    dispose();*/
+                    dispose();
                     break;
-                        }
+                        }else if(Testusername.equals(username) && Testpassword.equals(password)){
+                    userExists = true;
+                    System.out.println("Welcome to your Desktop Application");
+                    myprofil WD = new myprofil();
+                    WD.show();
+                    dispose();
+                    break;}
+                            
                 }
             }
             

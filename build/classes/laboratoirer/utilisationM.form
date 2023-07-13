@@ -970,8 +970,8 @@
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
-                <StringItem index="0" value="NomMat&#xe9;riel"/>
-                <StringItem index="1" value="Num&#xe9;quipe"/>
+                <StringItem index="0" value="NumMat&#xe9;riel"/>
+                <StringItem index="1" value="Numequipe"/>
                 <StringItem index="2" value="Quantit&#xe9;"/>
               </StringArray>
             </Property>

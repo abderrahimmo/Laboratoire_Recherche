@@ -835,7 +835,7 @@ public class publications extends javax.swing.JFrame {
 
     private void jLabel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseClicked
         // TODO add your handling code here:
-        changepassword CP = new changepassword();
+        WindowDirecteur CP = new WindowDirecteur();
                     CP.show();
                     dispose();
     }//GEN-LAST:event_jLabel25MouseClicked

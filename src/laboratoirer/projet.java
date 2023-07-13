@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -29,15 +30,20 @@ public class projet extends javax.swing.JFrame {
     PreparedStatement prepared=null;
     ResultSet resultat=null;
     int test=0;
+   private JFrame previousPage;
+    
     /**
      * Creates new form projet
      */
+    
     public projet() {
         initComponents();
         setLocationRelativeTo(null);
         ChekID();
-        refresh();
+        refresh();   
     }
+    
+
      public void refresh(){
     Connection co=DBConnexion.ConnectBD();
     try{
@@ -586,7 +592,7 @@ public class projet extends javax.swing.JFrame {
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 170, 50));
 
         CBrech.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        CBrech.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NumProjet", "TitreProjet", "DureéProjet", "Domaine" }));
+        CBrech.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NumProjet", "TitreProjet", "DureéProjet", "Numequipe" }));
         CBrech.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         CBrech.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -776,7 +782,7 @@ public class projet extends javax.swing.JFrame {
             
             if(CBrech.getSelectedItem().equals("NumProjet")){
                try{
-                    PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT `NumProjet`, `Titre`, `DateDébut`, `Darefin`, `Domaine`, `Dur` FROM `projet` WHERE `NumProjet`="+TFrech.getText()+"");
+                    PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT `NumProjet`, `Titre`, `DateDébut`, `Darefin`, `Dur`, `Numequipe` FROM `projet` WHERE `NumProjet`="+TFrech.getText()+"");
                     ResultSet rs=pr.executeQuery();
                     jTable2.setModel(DbUtils.resultSetToTableModel(rs));
                     }catch(SQLException ex)
@@ -786,7 +792,7 @@ public class projet extends javax.swing.JFrame {
                      }else 
                             if(CBrech.getSelectedItem().equals("TitreProjet")){
                                try{
-                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT `NumProjet`, `Titre`, `DateDébut`, `Darefin`, `Domaine`, `Dur` FROM `projet` WHERE `Titre`=?");
+                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT * FROM `projet` WHERE `Titre`=?");
                                 pr.setString(1, TFrech.getText());
                                 ResultSet rs=pr.executeQuery();
                                 jTable2.setModel(DbUtils.resultSetToTableModel(rs));
@@ -797,7 +803,7 @@ public class projet extends javax.swing.JFrame {
                                 }else 
                                     if(CBrech.getSelectedItem().equals("DureéProjet")){
                                try{
-                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT `NumProjet`, `Titre`, `DateDébut`, `Darefin`, `Domaine`, `Dur` FROM `projet` WHERE `Dur`=?");
+                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT * FROM `projet` WHERE `Dur`="+TFrech.getText()+"");
                                 ResultSet rs=pr.executeQuery();
                                 jTable2.setModel(DbUtils.resultSetToTableModel(rs));
                                 }catch(SQLException ex)
@@ -805,9 +811,9 @@ public class projet extends javax.swing.JFrame {
                                 Logger.getLogger(members.class.getName()).log(Level.SEVERE,null,ex);
                                 }
                                 }else 
-                            if(CBrech.getSelectedItem().equals("Domaine")){
+                            if(CBrech.getSelectedItem().equals("Numequipe")){
                                try{
-                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT `NumProjet`, `Titre`, `DateDébut`, `Darefin`, `Domaine`, `Dur` FROM `projet` WHERE `Domaine`=?");
+                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT * FROM `projet` WHERE `Numequipe`="+TFrech.getText()+"");
                                 pr.setString(1, TFrech.getText());
                                 ResultSet rs=pr.executeQuery();
                                 jTable2.setModel(DbUtils.resultSetToTableModel(rs));
@@ -856,13 +862,25 @@ public class projet extends javax.swing.JFrame {
            impression.imprimerJtable(jTable2, titer);
     }//GEN-LAST:event_btnImprimeMouseClicked
 
+    
     private void jLabel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel21MouseClicked
         // TODO add your handling code here:
-         changepassword CP = new changepassword();
+         WindowDirecteur CP = new WindowDirecteur();
                     CP.show();
                     dispose();
+                                              
+   
+                           
+
+
+  
+   
+
+
+
     }//GEN-LAST:event_jLabel21MouseClicked
 
+   
     private void duréafficheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duréafficheActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_duréafficheActionPerformed

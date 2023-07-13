@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import static laboratoirer.equipes.cnx;
 import net.proteanit.sql.DbUtils;
 import java.sql.Statement;
+import static laboratoirer.materiels.cnx;
 /**
  *
  * @author PCexpress
@@ -600,7 +601,7 @@ public class utilisationM extends javax.swing.JFrame {
         jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 170, 50));
 
         CBrech.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        CBrech.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NomMatériel", "Numéquipe", "Quantité" }));
+        CBrech.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NumMatériel", "Numequipe", "Quantité" }));
         jPanel1.add(CBrech, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 120, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -677,15 +678,14 @@ public class utilisationM extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         // TODO add your handling code here:
-         if(TFrech.getText().equals("")){
+       if(TFrech.getText().equals("")){
            
             JOptionPane.showMessageDialog(this, "SVP entrer quelque chose");
         }else 
             
-            if(CBrech.getSelectedItem().equals("gkghkj")){
+            if(CBrech.getSelectedItem().equals("NumMatériel")){
                try{
-                    PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT `Nom`, `Quntité`, `Numequipe` FROM `utilisermatériel` WHERE `Quntité`="+TFrech.getText()+"");
-                   
+                    PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT * FROM `utilisermatériel` WHERE `Nummatérial`="+TFrech.getText()+"");
                     ResultSet rs=pr.executeQuery();
                     jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     }catch(SQLException ex)
@@ -693,10 +693,21 @@ public class utilisationM extends javax.swing.JFrame {
                         Logger.getLogger(members.class.getName()).log(Level.SEVERE,null,ex);
                         }
                      }else 
-                            if(CBrech.getSelectedItem().equals("NomMatériel")){
+                            if(CBrech.getSelectedItem().equals("Numequipe")){
                                try{
-                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT * FROM `utilisermatériel` WHERE `Nom`=?");
-                                 pr.setString(1, TFrech.getText());
+                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT * FROM `utilisermatériel` WHERE `Numequipe`="+TFrech.getText()+"");
+                        
+                                ResultSet rs=pr.executeQuery();
+                                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+                                }catch(SQLException ex)
+                                {
+                                Logger.getLogger(members.class.getName()).log(Level.SEVERE,null,ex);
+                                }
+                                }else 
+                            if(CBrech.getSelectedItem().equals("Quantité")){
+                               try{
+                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT * FROM `utilisermatériel` WHERE `Quantité`="+TFrech.getText()+"");
+                                
                                 ResultSet rs=pr.executeQuery();
                                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                                 }catch(SQLException ex)
@@ -704,30 +715,8 @@ public class utilisationM extends javax.swing.JFrame {
                                 Logger.getLogger(members.class.getName()).log(Level.SEVERE,null,ex);
                                 }
                                 }
-                                else 
-                            if(CBrech.getSelectedItem().equals("Numéquipe")){
-                               try{
-                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT * FROM `utilisermatériel` WHERE `Numequipe`=?");
-                                ResultSet rs=pr.executeQuery();
-                                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                                }catch(SQLException ex)
-                                {
-                                Logger.getLogger(members.class.getName()).log(Level.SEVERE,null,ex);
-                                }
-                            }else 
-                                 if(CBrech.getSelectedItem().equals("Quntité")){
-                               try{
-                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT * FROM `utilisermatériel` WHERE `Quntité`=?");
-                                ResultSet rs=pr.executeQuery();
-                                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-                                }catch(SQLException ex)
-                                {
-                                Logger.getLogger(members.class.getName()).log(Level.SEVERE,null,ex);
-                                }
-                                         }
-        
-    
          
+
 
 
 
@@ -826,7 +815,7 @@ public class utilisationM extends javax.swing.JFrame {
 
     private void jLabel34MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel34MouseClicked
         // TODO add your handling code here:
-           changepassword CP = new changepassword();
+           WindowDirecteur CP = new WindowDirecteur();
                     CP.show();
                     dispose();                 
 

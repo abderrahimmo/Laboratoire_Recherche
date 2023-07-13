@@ -630,7 +630,7 @@ public class materiels extends javax.swing.JFrame {
             
             if(CBrech.getSelectedItem().equals("NumMatériel")){
                try{
-                    PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT `Nummatérial`, `Nom`, `Type`, `Carctéristique` FROM `matérial` WHERE `Nummatérial`="+TFrech.getText()+"");
+                    PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT * FROM `matérial` WHERE `Nummatérial`="+TFrech.getText()+"");
                     ResultSet rs=pr.executeQuery();
                     jTable1.setModel(DbUtils.resultSetToTableModel(rs));
                     }catch(SQLException ex)
@@ -640,7 +640,7 @@ public class materiels extends javax.swing.JFrame {
                      }else 
                             if(CBrech.getSelectedItem().equals("NomMatériel")){
                                try{
-                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT `Nummatérial`, `Nom`, `Type`, `Carctéristique` FROM `matérial` WHERE `Nom`=?");
+                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT * FROM `matérial` WHERE `Nom`=?");
                                 pr.setString(1, TFrech.getText());
                                 ResultSet rs=pr.executeQuery();
                                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
@@ -651,7 +651,7 @@ public class materiels extends javax.swing.JFrame {
                                 }else 
                             if(CBrech.getSelectedItem().equals("TypeMatériel")){
                                try{
-                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT `Nummatérial`, `Nom`, `Type`, `Carctéristique` FROM `matérial` WHERE `Type`=?");
+                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT * FROM `matérial` WHERE `Type`=?");
                                 pr.setString(1, TFrech.getText());
                                 ResultSet rs=pr.executeQuery();
                                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
@@ -662,7 +662,7 @@ public class materiels extends javax.swing.JFrame {
                                 }else 
                             if(CBrech.getSelectedItem().equals("CaractéristiqueMtériel")){
                                try{
-                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT `Nummatérial`, `Nom`, `Type`, `Carctéristique` FROM `matérial` WHERE `Carctéristique`=?");
+                                PreparedStatement pr=(PreparedStatement) cnx.prepareStatement("SELECT * FROM `matérial` WHERE `Caractéristique`=?");
                                 pr.setString(1, TFrech.getText());
                                 ResultSet rs=pr.executeQuery();
                                 jTable1.setModel(DbUtils.resultSetToTableModel(rs));
@@ -743,7 +743,7 @@ public class materiels extends javax.swing.JFrame {
 
     private void jLabel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseClicked
         // TODO add your handling code here:
-        Pagechoix CP = new Pagechoix();
+        WindowDirecteur CP = new WindowDirecteur();
                     CP.show();
                     dispose();
     }//GEN-LAST:event_jLabel22MouseClicked
@@ -789,14 +789,14 @@ public class materiels extends javax.swing.JFrame {
     private void TFCaracteristiquematerielKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TFCaracteristiquematerielKeyPressed
         // TODO add your handling code here:
          char c=evt.getKeyChar();
-        if(Character.isLetter(c)||Character.isWhitespace(c)||Character.isISOControl(c)
+        /*if(Character.isLetter(c)||Character.isWhitespace(c)||Character.isISOControl(c)
                 )
         {  TFCaracteristiquemateriel.setEditable(true);
          jLabelCarcMT.setForeground(Color.black);
         }else{
               TFCaracteristiquemateriel.setEditable(false);
              jLabelCarcMT.setForeground(Color.red);
-        }
+        }*/
     }//GEN-LAST:event_TFCaracteristiquematerielKeyPressed
 void setcolor(JPanel panel)
     {

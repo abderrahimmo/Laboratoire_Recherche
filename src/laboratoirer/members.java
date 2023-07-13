@@ -60,7 +60,7 @@ public class members extends javax.swing.JFrame {
     public void refresh(){
     Connection co=DBConnexion.ConnectBD();
     try{
-    PreparedStatement pr=(PreparedStatement) co.prepareStatement("SELECT `Matricule`, `Nom`, `Prenom`, `sexe`, `Grade`, `Spesialite`, `type`, `Numequipe`, `Tel`, `Email`, `Diplome`, `Directeur` FROM `membre` WHERE 1");
+    PreparedStatement pr=(PreparedStatement) co.prepareStatement("SELECT * FROM `membre` WHERE 1");
     ResultSet rs=pr.executeQuery();
     jTable1.setModel(DbUtils.resultSetToTableModel(rs));
     }catch(SQLException ex)
@@ -128,6 +128,7 @@ public class members extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         btnModifer1 = new javax.swing.JPanel();
         jLabel35 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -334,6 +335,13 @@ public class members extends javax.swing.JFrame {
             .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
         );
 
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_reply_all_arrow_55px.png"))); // NOI18N
+        jLabel22.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel22MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -346,11 +354,17 @@ public class members extends javax.swing.JFrame {
                     .addComponent(btnSupprimer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnImprime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnModifer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(148, 148, 148)
+                .addGap(38, 38, 38)
+                .addComponent(jLabel22)
+                .addGap(55, 55, 55)
                 .addComponent(btnAjoutre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnModifer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -360,7 +374,7 @@ public class members extends javax.swing.JFrame {
                 .addComponent(btnImprime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnvalide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, 0, 140, 600));
@@ -853,13 +867,13 @@ public class members extends javax.swing.JFrame {
        {
        Female.setSelected(true);
        }
-       /* try{
+        try{
             DateN.setDate((Date) (model.getValueAt(rowIndex, 4)));
         } catch(Exception e)
         {
       JOptionPane.showMessageDialog(null,e);
-       }*/
-        String GR=model.getValueAt(rowIndex, 4).toString();
+       }
+        String GR=model.getValueAt(rowIndex, 5).toString();
         switch (GR){
             case "Pr." : CBGrade.setSelectedIndex(0);
             break;
@@ -892,7 +906,7 @@ public class members extends javax.swing.JFrame {
             case "Per. de soutien" : CBGrade.setSelectedIndex(14);
             break;
 }
-        String SP=model.getValueAt(rowIndex, 5).toString();
+        String SP=model.getValueAt(rowIndex, 6).toString();
         switch (SP){
             case "Informatique" : CBSpesialite.setSelectedIndex(0);
             break;
@@ -901,9 +915,9 @@ public class members extends javax.swing.JFrame {
             case "Mathematiques" : CBSpesialite.setSelectedIndex(2);
             break;
             }
-        TFtype.setText(model.getValueAt(rowIndex, 6).toString());
+        TFtype.setText(model.getValueAt(rowIndex, 7).toString());
         
-       TFNequipe.setText(model.getValueAt(rowIndex, 7).toString());
+       TFNequipe.setText(model.getValueAt(rowIndex, 8).toString());
        /*String p=model.getValueAt(rowIndex, 9).toString();
         switch (p){
             case "Afrique du Sud"   -> jC.setSelectedIndex(0);
@@ -942,8 +956,8 @@ public class members extends javax.swing.JFrame {
             case "Tunisie"           -> jC.setSelectedIndex(33);
             case "Turquie"           -> jC.setSelectedIndex(34);
         }*/
-       TFtel.setText(model.getValueAt(rowIndex, 8).toString());
-       TFemail.setText(model.getValueAt(rowIndex, 9).toString());
+       TFtel.setText(model.getValueAt(rowIndex, 9).toString());
+       TFemail.setText(model.getValueAt(rowIndex, 10).toString());
       /* String d=model.getValueAt(rowIndex, 11).toString();
         switch (d){
             case "électronique"   -> dom.setSelectedIndex(0);
@@ -979,7 +993,7 @@ public class members extends javax.swing.JFrame {
             case "Téchnique Sportives"           -> dom.setSelectedIndex(30);
          }*/
        
-       String Dp=model.getValueAt(rowIndex, 10).toString();
+       String Dp=model.getValueAt(rowIndex, 11).toString();
         switch (Dp){
             case "Doc. d'Etat" : CBDiplome.setSelectedIndex(0);
             break;
@@ -998,7 +1012,7 @@ public class members extends javax.swing.JFrame {
             case "Licence" : CBDiplome.setSelectedIndex(7);
             break;
         }
-        String Dr=model.getValueAt(rowIndex, 11).toString();
+        String Dr=model.getValueAt(rowIndex, 12).toString();
          if(Dr.equals("true"))
        {
            Oui.setSelected(true);
@@ -1326,7 +1340,7 @@ public class members extends javax.swing.JFrame {
     private void TFtypeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TFtypeKeyPressed
         // TODO add your handling code here:
           char c=evt.getKeyChar();
-        if(Character.isLetter(c)||Character.isWhitespace(c)||Character.isISOControl(c)
+        if(Character.isAlphabetic(c) || Character.isLetter(c)||Character.isWhitespace(c)||Character.isISOControl(c) || Character.isBmpCodePoint(c)
                 )
         {  TFtype.setEditable(true);
          jLabel26.setForeground(Color.black);
@@ -1392,6 +1406,14 @@ public class members extends javax.swing.JFrame {
         jLabelEmail.setForeground(Color.black);
     }*/
     }//GEN-LAST:event_TFemailKeyTyped
+
+    private void jLabel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseClicked
+        // TODO add your handling code here:
+        WindowDirecteur CP = new WindowDirecteur();
+                    CP.show();
+                    dispose();
+        
+    }//GEN-LAST:event_jLabel22MouseClicked
 
      void setcolor(JPanel panel)
     {
@@ -1476,6 +1498,7 @@ public class members extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
